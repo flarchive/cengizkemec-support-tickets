@@ -1,0 +1,973 @@
+// ============================================================================
+//  Support Tickets — forum stylesheet
+//  A clean, modern support-center UI for Flarum 2.
+// ============================================================================
+
+// --- Local design tokens -----------------------------------------------------
+@st-radius:        10px;
+@st-radius-sm:     8px;
+@st-gap:           18px;
+@st-transition:    0.18s ease;
+
+// The accent is the forum's own primary colour, so the support centre blends
+// into the rest of the board instead of looking like a separate product.
+@st-accent:        var(--primary-color);
+
+// Status colours stay fixed: a red or amber status is a signal, not branding,
+// and must be readable on every theme.
+@st-new:           #2563eb; // blue
+@st-answered:      #059669; // green
+@st-pending:       #d97706; // amber
+@st-resolved:      #0d9488; // teal
+@st-closed:        #64748b; // slate
+
+@st-p-low:         #10b981;
+@st-p-medium:      #3b82f6;
+@st-p-high:        #f59e0b;
+@st-p-critical:    #ef4444;
+
+// --- Shared primitives -------------------------------------------------------
+
+.SupportBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 11px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.7;
+  white-space: nowrap;
+  text-transform: uppercase;
+  color: #fff;
+  background: @st-closed;
+
+  .icon {
+    font-size: 10px;
+  }
+}
+
+// Status colours
+.SupportBadge--new       { background: @st-new; }
+.SupportBadge--answered  { background: @st-answered; }
+.SupportBadge--pending   { background: @st-pending; }
+.SupportBadge--resolved  { background: @st-resolved; }
+.SupportBadge--closed    { background: @st-closed; }
+
+// Priority chips (soft / outlined look)
+.SupportPriority {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 700;
+  line-height: 1.7;
+  white-space: nowrap;
+  background: transparent;
+  border: 1.5px solid currentColor;
+
+  &::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+}
+.SupportPriority--low      { color: @st-p-low; }
+.SupportPriority--medium   { color: @st-p-medium; }
+.SupportPriority--high     { color: @st-p-high; }
+.SupportPriority--critical { color: @st-p-critical; }
+
+.SupportChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  color: var(--muted-color);
+  white-space: nowrap;
+
+  .icon { font-size: 11px; }
+}
+
+// --- Page shell --------------------------------------------------------------
+
+.SupportPage,
+.TicketPage {
+  .Page-hero {
+    margin-bottom: @st-gap;
+  }
+}
+
+// Flarum's PageStructure always renders `.Page-sidebar`, even when the page
+// provides no sidebar. On desktop an empty one still reserves a full sidebar
+// column plus the flex gap, which pushed our content to the right while the
+// hero stayed full-width (so nothing lined up). Hide it when it is empty.
+.SupportPage,
+.TicketPage {
+  .Page-sidebar:empty {
+    display: none;
+  }
+}
+
+// The hero is wrapped in a `.container` (same as core's Hero component) so it
+// lines up with the page content instead of bleeding across the whole viewport.
+.SupportHero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 24px;
+  border-radius: @st-radius;
+  background: var(--primary-color);
+  background-image: radial-gradient(
+    130% 170% at 10% 0%,
+    color-mix(in srgb, var(--contrast-color) 16%, transparent) 0%,
+    transparent 62%
+  );
+  color: var(--contrast-color);
+  box-shadow: 0 1px 2px var(--shadow-color);
+
+  @media @phone {
+    padding: 18px;
+  }
+}
+
+// Guests: invite them to sign in / register instead of showing an error.
+.SupportGuest {
+  text-align: center;
+  padding: 56px 24px;
+  border-radius: @st-radius-sm;
+  background: var(--control-bg);
+
+  .SupportGuest-icon {
+    font-size: 38px;
+    color: @st-accent;
+    opacity: 0.75;
+    margin-bottom: 16px;
+  }
+
+  .SupportGuest-title {
+    margin: 0;
+    font-size: 19px;
+    font-weight: 800;
+    color: var(--text-color);
+  }
+
+  .SupportGuest-text {
+    max-width: 520px;
+    margin: 8px auto 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--muted-color);
+  }
+
+  .SupportGuest-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 22px;
+  }
+}
+
+.SupportHero-main {
+  min-width: 0;
+}
+
+.SupportHero-title {
+  margin: 0 0 4px;
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--contrast-color);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  .icon { opacity: 0.85; }
+}
+
+.SupportHero-subtitle {
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.88;
+  color: var(--contrast-color);
+}
+
+// --- Stat cards --------------------------------------------------------------
+
+.SupportStats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin-bottom: @st-gap;
+}
+
+.SupportStat {
+  padding: 14px 16px;
+  border-radius: @st-radius-sm;
+  background: var(--body-bg);
+  border: 1px solid var(--control-bg);
+  box-shadow: 0 1px 2px var(--shadow-color);
+}
+
+.SupportStat-value {
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--text-color);
+}
+
+.SupportStat-label {
+  margin-top: 2px;
+  font-size: 12.5px;
+  color: var(--muted-color);
+}
+
+// --- Tabs / filters ----------------------------------------------------------
+
+.SupportTabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: @st-gap;
+}
+
+.SupportTab {
+  appearance: none;
+  border: 1px solid transparent;
+  background: var(--control-bg);
+  color: var(--muted-color);
+  padding: 7px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: @st-transition;
+
+  &:hover {
+    color: var(--text-color);
+    border-color: color-mix(in srgb, var(--primary-color) 45%, transparent);
+  }
+
+  &.active {
+    background: var(--primary-color);
+    color: var(--contrast-color);
+    border-color: var(--primary-color);
+  }
+}
+
+.SupportTab-count {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 0 7px;
+  border-radius: 999px;
+  background: fade(#000, 8%);
+  font-size: 11.5px;
+  font-weight: 700;
+}
+
+.SupportTab.active .SupportTab-count {
+  background: color-mix(in srgb, var(--contrast-color) 25%, transparent);
+}
+
+.TicketPage-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted-color);
+
+  &:hover {
+    color: @st-accent;
+  }
+}
+
+.TicketPage-hero {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-size: 20px;
+  font-weight: 800;
+  word-break: break-word;
+
+  .icon {
+    color: var(--muted-color);
+  }
+}
+
+// --- Ticket list -------------------------------------------------------------
+
+.SupportList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.SupportCard {
+  position: relative;
+  display: block;
+  padding: 16px 18px 16px 22px;
+  border-radius: @st-radius-sm;
+  background: var(--control-bg);
+  border: 1px solid transparent;
+  color: inherit;
+  text-decoration: none;
+  overflow: hidden;
+  transition: transform @st-transition, box-shadow @st-transition, border-color @st-transition;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: @st-closed;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px -14px var(--shadow-color);
+    border-color: color-mix(in srgb, var(--primary-color) 55%, transparent);
+    background: color-mix(in srgb, var(--primary-color) 10%, transparent);
+    text-decoration: none;
+    color: inherit;
+
+    // Make the hover state unmistakable (the old 1px lift + faint shadow was
+    // invisible on dark backgrounds).
+    .SupportCard-title {
+      color: @st-accent;
+    }
+  }
+}
+
+// Accent bar per status
+.SupportCard--new::before       { background: @st-new; }
+.SupportCard--answered::before  { background: @st-answered; }
+.SupportCard--pending::before   { background: @st-pending; }
+.SupportCard--resolved::before  { background: @st-resolved; }
+.SupportCard--closed::before    { background: @st-closed; }
+
+.SupportCard-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.SupportCard-title {
+  margin: 0;
+  font-size: 15.5px;
+  font-weight: 700;
+  color: var(--text-color);
+  line-height: 1.35;
+  word-break: break-word;
+}
+
+.SupportCard-badges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.SupportCard-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+.SupportCard-excerpt {
+  margin: 8px 0 0;
+  font-size: 13.5px;
+  color: var(--muted-color);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.SupportEmpty {
+  text-align: center;
+  padding: 56px 20px;
+  border-radius: @st-radius-sm;
+  background: var(--control-bg);
+
+  .SupportEmpty-icon {
+    font-size: 40px;
+    color: var(--muted-color);
+    opacity: 0.55;
+    margin-bottom: 14px;
+  }
+
+  .SupportEmpty-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-color);
+  }
+
+  .SupportEmpty-text {
+    margin-top: 4px;
+    color: var(--muted-color);
+    font-size: 13.5px;
+  }
+}
+
+// --- Ticket detail -----------------------------------------------------------
+
+.TicketHeader {
+  padding: 18px 20px;
+  border-radius: @st-radius-sm;
+  background: var(--control-bg);
+  margin-bottom: @st-gap;
+}
+
+.TicketHeader-title {
+  margin: 0 0 12px;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-color);
+  word-break: break-word;
+}
+
+.TicketHeader-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.TicketMessage {
+  display: flex;
+  gap: 14px;
+  padding: 18px 20px;
+  border-radius: @st-radius-sm;
+  background: var(--control-bg);
+  border-left: 4px solid @st-accent;
+  margin-bottom: @st-gap;
+}
+
+.TicketAvatar {
+  flex-shrink: 0;
+
+  img, .Avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: block;
+  }
+}
+
+.TicketMessage-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.TicketMessage-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  font-size: 13.5px;
+
+  .TicketMessage-author {
+    font-weight: 700;
+    color: var(--text-color);
+  }
+
+  .TicketMessage-time {
+    color: var(--muted-color);
+    font-size: 12.5px;
+  }
+}
+
+.TicketMessage-text {
+  white-space: pre-wrap;
+  word-break: break-word;
+  line-height: 1.6;
+  color: var(--text-color);
+}
+
+.TicketAttachment {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 8px 14px;
+  border-radius: @st-radius-sm;
+  background: color-mix(in srgb, var(--primary-color) 10%, transparent);
+  color: @st-accent;
+  font-size: 13px;
+  font-weight: 600;
+
+  &:hover { text-decoration: none; }
+}
+
+// Inline image attachment inside a ticket message or reply.
+.TicketAttachment-image {
+  display: inline-block;
+  margin-top: 12px;
+  line-height: 0;
+
+  img {
+    display: block;
+    max-width: 100%;
+    max-height: 420px;
+    border-radius: @st-radius-sm;
+    border: 1px solid var(--control-bg);
+  }
+
+  &:hover { text-decoration: none; }
+}
+
+// --- Attachment picker (paste / file input) ----------------------------------
+
+.AttachmentRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.AttachmentHint {
+  margin: -6px 0 12px;
+  font-size: 12px;
+  color: var(--muted-color);
+}
+
+.AttachmentStatus {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  color: var(--muted-color);
+}
+
+.AttachmentPreview {
+  position: relative;
+  display: inline-block;
+  line-height: 0;
+}
+
+.AttachmentPreview-image {
+  display: block;
+  max-width: 240px;
+  max-height: 170px;
+  border-radius: @st-radius-sm;
+  border: 1px solid var(--control-bg);
+}
+
+.AttachmentChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px 6px 14px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--primary-color) 10%, transparent);
+  color: @st-accent;
+  font-size: 13px;
+  font-weight: 600;
+  max-width: 100%;
+  word-break: break-all;
+}
+
+.AttachmentRemove {
+  appearance: none;
+  border: 0;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  line-height: 1;
+  flex-shrink: 0;
+  background: color-mix(in srgb, var(--primary-color) 22%, transparent);
+  color: @st-accent;
+
+  &:hover {
+    background: color-mix(in srgb, var(--primary-color) 38%, transparent);
+  }
+}
+
+// The thumbnail floats its remove button on the corner.
+.AttachmentPreview .AttachmentRemove {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: fade(#0f172a, 65%);
+  color: #fff;
+
+  &:hover {
+    background: fade(#0f172a, 85%);
+  }
+}
+
+// Replies timeline
+.TicketReplies {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: @st-gap;
+}
+
+.TicketReply {
+  display: flex;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: @st-radius-sm;
+  background: var(--control-bg);
+  border-left: 4px solid transparent;
+
+  &.is-staff {
+    background: color-mix(in srgb, var(--primary-color) 7%, transparent);
+    border-left-color: @st-accent;
+  }
+}
+
+.TicketReply-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.TicketReply-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  font-size: 13.5px;
+
+  .TicketReply-author {
+    font-weight: 700;
+    color: var(--text-color);
+  }
+
+  .TicketReply-time {
+    color: var(--muted-color);
+    font-size: 12.5px;
+  }
+}
+
+.TicketReply-text {
+  white-space: pre-wrap;
+  word-break: break-word;
+  line-height: 1.6;
+  margin: 0;
+  color: var(--text-color);
+}
+
+.TicketStaffTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  background: var(--primary-color);
+  color: var(--contrast-color);
+}
+
+// Reply form
+.TicketReplyForm {
+  padding: 18px 20px;
+  border-radius: @st-radius-sm;
+  background: var(--control-bg);
+
+  .FormControl {
+    margin-bottom: 12px;
+  }
+}
+
+.TicketReplyForm-title {
+  margin: 0 0 12px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+// Staff control panel
+.TicketStaffPanel {
+  margin-top: @st-gap;
+  padding: 18px 20px;
+  border-radius: @st-radius-sm;
+  background: var(--control-bg);
+  border: 1px dashed color-mix(in srgb, var(--primary-color) 45%, transparent);
+}
+
+.TicketStaffPanel-title {
+  margin: 0 0 14px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.TicketStaffGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.TicketStaffField {
+  min-width: 0;
+
+  label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--muted-color);
+  }
+
+  .FormControl {
+    max-width: 100%;
+  }
+}
+
+.TicketStaffActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+// On a phone the action buttons used to be clipped by the panel padding. Let
+// them take the full width and wrap instead.
+@media @phone {
+  .TicketStaffPanel {
+    padding: 16px;
+  }
+
+  .TicketStaffGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .TicketStaffActions,
+  .TicketStaffActions-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+
+    .Button {
+      width: 100%;
+      justify-content: center;
+      margin: 0;
+    }
+  }
+}
+
+.TicketClosedNote {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: @st-radius-sm;
+  background: color-mix(in srgb, @st-resolved 10%, transparent);
+  color: var(--text-color);
+  font-size: 13.5px;
+}
+
+.TicketClosedNote-text {
+  margin: 0;
+}
+
+// --- Create ticket modal -----------------------------------------------------
+
+// The default "large" modal caps at 800px, which leaves the create form feeling
+// cramped on desktop. Give the form (and therefore every field) more room.
+@media (min-width: 992px) {
+  .Modal.CreateTicketModal {
+    max-width: 1000px;
+  }
+}
+
+.CreateTicketModal {
+  // Keep the tighter vertical rhythm, but restore the horizontal inset that core
+  // provides (25px 30px) so the labels and fields don't hug the modal edges.
+  .Modal-body { padding: 4px 30px; }
+
+  // Tighter, more readable rhythm between the labelled rows.
+  .Form {
+    --gap: 20px;
+  }
+
+  .Form-group > label {
+    display: block;
+    font-size: 13.5px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    color: var(--text-color);
+  }
+
+  // Make sure every control spans the full width of the modal.
+  .Form-group > .FormControl {
+    width: 100%;
+  }
+
+  .TicketCategoryHint {
+    margin-top: 6px;
+    font-size: 12.5px;
+    color: var(--muted-color);
+  }
+
+  .TicketUploadRow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+}
+
+// --- Loading / error states --------------------------------------------------
+
+.SupportLoading {
+  padding: 40px 0;
+  text-align: center;
+}
+
+// Flarum itself switches between light and dark, and every colour above is
+// pulled from its CSS variables, so the support centre follows the forum's
+// theme automatically — no separate dark-mode block needed.
+
+// --- Clickable users and ticket details --------------------------------------
+
+.TicketUserLink {
+  color: inherit;
+  font-weight: 600;
+
+  &:hover,
+  &:focus {
+    color: var(--primary-color);
+    text-decoration: none;
+  }
+}
+
+.TicketFields {
+  margin-bottom: @st-gap;
+  padding: 16px 18px;
+  border-radius: @st-radius-sm;
+  background: var(--control-bg);
+}
+
+.TicketFields-title {
+  margin: 0 0 12px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.TicketFields-list {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.TicketField {
+  min-width: 0;
+}
+
+.TicketField-label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--muted-color);
+}
+
+.TicketField-value {
+  margin: 2px 0 0;
+  font-size: 14px;
+  color: var(--text-color);
+  word-break: break-word;
+}
+
+// Choice controls on the "new ticket" form.
+.TicketChoices {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.TicketChoice {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-color);
+  cursor: pointer;
+  margin: 0;
+
+  input {
+    margin: 0;
+  }
+}
+
+.TicketFormField.is-required > label {
+  font-weight: 700;
+}
+
+.TicketFormField-required {
+  color: var(--error-color);
+}
+
+// --- Support notification toggle ---------------------------------------------
+
+.SupportNotifToggle {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 12px;
+  margin-bottom: @st-gap;
+  padding: 12px 16px;
+  border-radius: @st-radius-sm;
+  background: var(--control-bg);
+  border: 1px solid var(--control-bg);
+
+  .Switch {
+    margin: 0;
+  }
+}
+
+.SupportNotifToggle-help {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.SupportNotifToggle-note {
+  flex-basis: 100%;
+  font-size: 12.5px;
+  color: var(--muted-color);
+}
