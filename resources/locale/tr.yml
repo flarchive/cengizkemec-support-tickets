@@ -1,0 +1,234 @@
+cengizkemec-support:
+  admin:
+    title: Destek Biletleri
+    settings: Ayarlar
+    auto_close_days: Otomatik kapatma (gün)
+    auto_close_days_help: "Bu süre boyunca hareket görmeyen biletler otomatik olarak kapatılır. İzin verilen değerler: 1-365."
+    email_notifications: E-posta bildirimleri
+    email_notifications_help: Bir bilet oluşturulduğunda veya yanıt yazıldığında ilgililere e-posta gönderilir.
+    staff_group: Destek ekibi grubu
+    staff_group_help: "Seçilen grubun üyeleri destek ekibidir. Tüm biletleri görebilir, bildirim alır ve yeni biletler otomatik olarak onlara atanabilir."
+    staff_group_none: "— Yöneticiler ve “Tüm destek biletlerini gör” iznine sahip olanlar —"
+    auto_assign: Yeni biletleri otomatik ata
+    auto_assign_help: Her yeni bilet, en az açık bileti olan destek ekibi üyesine atanır.
+    permissions:
+      view_all: Tüm destek biletlerini gör
+      reply: Destek biletlerine yanıt ver
+      manage: Destek biletlerini yönet
+    categories:
+      title: Bilet kategorileri
+      help: Kategoriler, kullanıcıların bilet açarken doğru departmanı seçmesine yardımcı olur. Biletleri yönlendirmek için kategoriyi bir departmana bağlayın.
+      add: Kategori ekle
+      cancel: Vazgeç
+      create: Kategori oluştur
+      delete: Sil
+      position: Sıra
+      empty: Henüz kategori yok. Başlamak için bir tane oluşturun.
+      load_error: Kategoriler yüklenemedi. Lütfen tekrar deneyin.
+      created: Kategori oluşturuldu.
+      deleted: Kategori silindi.
+      save_error: Kategori kaydedilemedi.
+      delete_error: Kategori silinemedi.
+      confirm_delete: "{name} kategorisini silmek istediğinizden emin misiniz?"
+      field_name: Ad
+      field_slug: Kısa ad (slug)
+      field_slug_help: Küçük harf, rakam ve tire içeren URL dostu tanımlayıcı.
+      field_description: Açıklama
+      field_department: Departman
+      field_department_help: "Bu kategorideki biletler atama ve bildirim için departman üyelerine yönlendirilir. Genel destek ekibi için \"Departman yok\" olarak bırakın."
+      department_none: "— Departman yok —"
+      field_active: Etkin
+      field_active_help: Etkin olmayan kategoriler kullanıcılar bilet açarken gizlenir.
+    departments:
+      title: Departmanlar
+      help: "Destek ekibinizi departmanlara ayırın, her birine ait kişileri ekleyin ve kategorileri departmanlara bağlayın. Yeni biletler departman üyelerine atanır ve yalnızca onlar bildirim alır."
+      add: Departman ekle
+      cancel: Vazgeç
+      create: Departman oluştur
+      delete: Sil
+      empty: Henüz departman yok. Bir tane oluşturup üye ekleyin ve kategorileri bağlayın.
+      load_error: Departmanlar yüklenemedi. Lütfen tekrar deneyin.
+      created: Departman oluşturuldu.
+      deleted: Departman silindi ve bağlı kategorilerin bağlantısı kaldırıldı.
+      save_error: Departman kaydedilemedi.
+      delete_error: Departman silinemedi.
+      confirm_delete: "{name} departmanını silmek istediğinizden emin misiniz? Bağlı kategorilerin departman bağlantısı kaldırılacak ve genel destek ekibine dönecektir."
+      field_name: Ad
+      field_slug: Kısa ad (slug)
+      field_slug_help: Küçük harf, rakam ve tire içeren URL dostu tanımlayıcı.
+      field_description: Açıklama
+      field_active: Etkin
+      field_active_help: Etkin olmayan departmanlara yeni bilet gitmez; kategorileri genel destek ekibine döner.
+      option_inactive: "{name} (etkin değil)"
+      members: Üyeler
+      members_count: "{count} üye"
+      members_none: Üye yok
+      members_title: "Üyeler — {name}"
+      members_help: Departman üyeleri, bağlı kategorilerdeki biletler için bildirim alır ve yeni biletler önce onlara atanır. Biletleri açabilmeleri için destek izinlerine (veya destek ekibi grubuna) sahip olduklarından emin olun.
+      members_label: Seçili üyeler
+      members_empty: Henüz üye yok. Eklemek için yukarıdan kullanıcı arayın.
+      members_search_placeholder: Ad veya kullanıcı adıyla ara...
+      members_search_empty: Kullanıcı bulunamadı.
+      search_error: Kullanıcı araması başarısız oldu. Lütfen tekrar deneyin.
+      member_add: Ekle
+      member_added: Eklendi
+      member_remove: Çıkar
+      members_save: Üyeleri kaydet
+      members_cancel: Vazgeç
+      members_saved: Departman üyeleri kaydedildi.
+      members_save_error: Üyeler kaydedilemedi.
+    forms:
+      title: Bilet form alanları
+      help: "HESK tarzında bilet formuna kendi alanlarınızı ekleyin. Kullanıcılar bilet açarken bu alanları doldurur ve yanıtlar biletin içinde gösterilir."
+      add: Alan ekle
+      cancel: Vazgeç
+      create: Alan oluştur
+      save: Alanı kaydet
+      edit: Düzenle
+      delete: Sil
+      position: Sıra
+      empty: Henüz özel alan yok. Bilet formunu genişletmek için bir tane ekleyin.
+      load_error: Alanlar yüklenemedi. Lütfen tekrar deneyin.
+      created: Alan oluşturuldu.
+      updated: Alan güncellendi.
+      deleted: Alan silindi.
+      save_error: Alan kaydedilemedi.
+      delete_error: Alan silinemedi.
+      confirm_delete: "{label} alanını silmek istediğinizden emin misiniz?"
+      field_label: Etiket
+      field_label_help: Kullanıcılara bilet formunda gösterilir.
+      field_name: Anahtar
+      field_name_help: "Dahili tanımlayıcı (harf, rakam ve alt çizgi). Boş bırakılırsa etiketten üretilir."
+      field_type: Tür
+      field_options: Seçenekler
+      field_options_help: Her satıra bir seçenek. Seçim kutusu, radyo ve onay kutusu türlerinde kullanılır.
+      field_required: Zorunlu
+      field_category: Uygulanacağı kategori
+      field_category_help: "Alanın her zaman görünmesi için \"Tüm kategoriler\" olarak bırakın veya tek bir kategoriyle sınırlayın."
+      field_active: Etkin
+      field_active_help: Etkin olmayan alanlar bilet formunda gizlenir.
+      category_all: Tüm kategoriler
+      type:
+        text: Kısa metin
+        textarea: Uzun metin
+        number: Sayı
+        email: E-posta
+        url: Bağlantı
+        date: Tarih
+        select: Açılır liste
+        radio: Radyo düğmeleri
+        checkbox: Onay kutuları
+  forum:
+    nav_item: Destek
+    title: Destek Merkezi
+    subtitle: Bir bilet oluşturun, ekibimiz en kısa sürede size dönüş yapacaktır.
+    new_ticket: Yeni Bilet
+    my_tickets: Biletlerim
+    status:
+      new: Yeni
+      answered: Yanıtlandı
+      pending: Beklemede
+      resolved: Çözüldü
+      closed: Kapatıldı
+    priority:
+      low: Düşük
+      medium: Orta
+      high: Yüksek
+      critical: Kritik
+    priority_label: Öncelik
+    tab_all: Tümü
+    tab_open: Açık
+    tab_closed: Kapalı
+    stat_total: Toplam
+    stat_open: Açık
+    stat_closed: Kapalı
+    category: Kategori
+    category_none: Kategori seçin
+    department: Departman
+    category_department_hint: "Bu kategori {department} departmanı tarafından yanıtlanır."
+    subject: Konu
+    subject_placeholder: Sorununuzu kısaca özetleyin
+    message: Mesaj
+    message_placeholder: Sorununuzu ayrıntılı olarak açıklayın...
+    attachment: Ek
+    upload: Yükle
+    uploading: Yükleniyor...
+    upload_done: Yüklendi
+    upload_failed: Yükleme başarısız oldu. Lütfen tekrar deneyin.
+    upload_too_large: "Dosya çok büyük. En fazla 5 MB yükleyebilirsiniz."
+    attachment_hint: "İpucu: Görseli Ctrl+V ile yapıştırarak ekleyebilirsiniz."
+    remove_attachment: Eki kaldır
+    create: Bilet Oluştur
+    reply: Yanıtla
+    reply_placeholder: Bir yanıt yazın...
+    send_reply: Yanıt Gönder
+    assigned_to: Atanan
+    unassigned: Atanmamış
+    staff: Ekip
+    staff_panel: Ekip İşlemleri
+    status_label: Durum
+    reopen: Yeniden Aç
+    mark_resolved: Çözüldü Olarak İşaretle
+    close_ticket: Kapat
+    closed_note: Bu bilet kapatıldı. Sohbete devam etmek için yeniden açın.
+    unknown_user: Bilinmeyen kullanıcı
+    empty_title: Henüz bilet yok
+    empty_text: Bir destek bileti oluşturduğunuzda burada görünecektir.
+    error_load: Bilet yüklenemedi.
+    error_not_found: Bilet bulunamadı veya erişim reddedildi.
+    error_reply: Yanıt gönderilemedi.
+    error_status: Durum güncellenemedi.
+    error_assign: Bilet atanamadı.
+    error_create: Bilet oluşturulamadı.
+    error_preferences: Bildirim tercihiniz kaydedilemedi.
+    guest_title: Destek kaydı açmak için giriş yapın
+    guest_text: Destek kaydı oluşturmak ve sürecini takip edebilmek için bir hesabınız olması gerekir. Başlamak için giriş yapın veya ücretsiz bir hesap oluşturun.
+    guest_login: Giriş Yap
+    guest_register: Kayıt Ol
+    back_to_support: Desteğe Dön
+    meta_title_text: Destek
+    details: Ayrıntılar
+    field_required: "Bu alan zorunludur."
+    notifications:
+      label: Destek bildirimleri
+      help: Bir bilet oluşturulduğunda veya yanıtlandığında uyarı ve e-posta alın.
+      on: Destek bildirimleri açık.
+      off: Destek bildirimleri kapalı.
+    notification:
+      new_ticket: "{username} yeni bir destek bileti açtı"
+      ticket_reply: "{username} bir destek bileti'ne yanıt verdi"
+      new_ticket_label: Yeni destek bileti
+      ticket_reply_label: Bilete yanıt
+  email:
+    new_ticket_subject: "Yeni destek bileti: {subject}"
+    reply_subject: "Yeni yanıt: {subject}"
+    new_ticket:
+      plain:
+        body: |
+          {opener_display_name} yeni bir destek bileti açtı: "{title}".
+
+          {content}
+
+          Bileti aç: {url}
+      html:
+        body: |
+          {opener_display_name} yeni bir destek bileti açtı: "{title}".
+
+          {content}
+
+          [Bileti aç]({url})
+    ticket_reply:
+      plain:
+        body: |
+          {author_display_name}, "{title}" destek bileti'ne yanıt verdi.
+
+          {content}
+
+          Bileti aç: {url}
+      html:
+        body: |
+          {author_display_name}, "{title}" destek bileti'ne yanıt verdi.
+
+          {content}
+
+          [Bileti aç]({url})

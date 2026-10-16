@@ -1,0 +1,184 @@
+/**
+ * Styles for the Support Tickets admin settings page.
+ *
+ * Everything is built on Flarum's CSS custom properties so the page follows
+ * the active admin theme automatically.
+ */
+
+.SupportAdmin {
+  padding-bottom: 40px;
+
+  &-divider {
+    border: 0;
+    border-top: 1px solid var(--control-bg);
+    margin: 30px 0;
+  }
+
+  &-section {
+    padding-bottom: 20px;
+  }
+
+  &-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+
+  &-headerText {
+    max-width: 65ch;
+    margin-bottom: 0;
+  }
+
+  &-form {
+    background: var(--control-bg);
+    border-radius: var(--border-radius);
+    padding: 4px 20px 0;
+    margin-bottom: 20px;
+  }
+
+  &-state {
+    padding: 24px 0;
+    text-align: center;
+  }
+
+  &-table {
+    width: 100%;
+    background: var(--control-bg);
+    border-radius: var(--border-radius);
+    border-collapse: collapse;
+    border-spacing: 0;
+
+    th,
+    td {
+      padding: 10px 15px;
+      text-align: start;
+      vertical-align: middle;
+      border-bottom: 1px solid var(--body-bg);
+      color: var(--control-color);
+    }
+
+    thead th {
+      font-size: 11px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--muted-color, var(--control-color));
+      background: var(--control-bg-shaded);
+      white-space: nowrap;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: 0;
+    }
+
+    tbody tr:hover td {
+      background: var(--control-bg-shaded);
+    }
+  }
+
+  &-description {
+    max-width: 36ch;
+    word-break: break-word;
+  }
+
+  &-position {
+    white-space: nowrap;
+  }
+
+  &-actionsColumn {
+    width: 1%;
+    white-space: nowrap;
+    text-align: end;
+  }
+}
+
+// Keep the category table usable on narrow admin screens.
+@media (max-width: 767px) {
+  .SupportAdmin-table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+// --- Department members modal -------------------------------------------------
+
+.DepartmentMembersModal {
+  .DepartmentMembers-chips {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .DepartmentMembers-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 3px 9px 3px 4px;
+    background: var(--control-bg);
+    border-radius: 999px;
+    font-size: 13px;
+
+    .Avatar {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+    }
+  }
+
+  .DepartmentMembers-chipRemove {
+    background: none;
+    border: 0;
+    padding: 2px 4px;
+    cursor: pointer;
+    color: var(--muted-color, var(--control-color));
+    line-height: 1;
+
+    &:hover {
+      color: var(--error-color, #d83e3e);
+    }
+  }
+
+  .DepartmentMembers-results {
+    list-style: none;
+    margin: 0 0 16px;
+    padding: 0;
+    max-height: 240px;
+    overflow-y: auto;
+  }
+
+  .DepartmentMembers-result {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--control-bg);
+
+    &:last-child {
+      border-bottom: 0;
+    }
+
+    .Avatar {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+    }
+  }
+
+  .DepartmentMembers-resultName {
+    flex: 1;
+    word-break: break-word;
+  }
+
+  .DepartmentMembers-loading {
+    padding: 10px 0;
+    text-align: center;
+  }
+}
+
