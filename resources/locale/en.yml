@@ -1,0 +1,110 @@
+cengizkemec-support:
+  admin:
+    title: Support Tickets
+    settings: Settings
+    auto_close_days: Auto-close after (days)
+    auto_close_days_help: "Tickets that have had no activity for this many days are closed automatically. Allowed values: 1-365."
+    email_notifications: Email notifications
+    email_notifications_help: Send an email to the people involved when a ticket is created or a reply is posted.
+    permissions:
+      view_all: View all support tickets
+      reply: Reply to support tickets
+      manage: Manage support tickets
+    categories:
+      title: Ticket categories
+      help: Categories help users pick the right department when they open a ticket.
+      add: Add category
+      cancel: Cancel
+      create: Create category
+      delete: Delete
+      position: Position
+      empty: No categories yet. Create one to get started.
+      load_error: Categories could not be loaded. Please try again.
+      created: Category created.
+      deleted: Category deleted.
+      save_error: The category could not be saved.
+      delete_error: The category could not be deleted.
+      confirm_delete: "Are you sure you want to delete {name}?"
+      field_name: Name
+      field_slug: Slug
+      field_slug_help: URL-friendly identifier using lowercase letters, numbers and dashes.
+      field_description: Description
+      field_active: Active
+      field_active_help: Inactive categories are hidden when users open a ticket.
+  forum:
+    nav_item: Support
+    title: Support Center
+    subtitle: Create a ticket and our team will get back to you as soon as possible.
+    new_ticket: New Ticket
+    my_tickets: My Tickets
+    status:
+      new: New
+      answered: Answered
+      pending: Pending
+      resolved: Resolved
+      closed: Closed
+    priority:
+      low: Low
+      medium: Medium
+      high: High
+      critical: Critical
+    priority_label: Priority
+    tab_all: All
+    tab_open: Open
+    tab_closed: Closed
+    stat_total: Total
+    stat_open: Open
+    stat_closed: Closed
+    category: Category
+    category_none: Select a category
+    subject: Subject
+    subject_placeholder: Briefly describe your issue
+    message: Message
+    message_placeholder: Explain your issue in detail...
+    attachment: Attachment
+    upload: Upload
+    uploading: Uploading...
+    upload_done: Uploaded
+    upload_failed: Upload failed. Please try again.
+    create: Create Ticket
+    reply: Reply
+    reply_placeholder: Write a reply...
+    send_reply: Send Reply
+    assigned_to: Assigned to
+    unassigned: Unassigned
+    staff: Staff
+    staff_panel: Staff Actions
+    status_label: Status
+    reopen: Reopen
+    mark_resolved: Mark Resolved
+    close_ticket: Close
+    closed_note: This ticket is closed. Reopen it to continue the conversation.
+    unknown_user: Unknown user
+    empty_title: No tickets yet
+    empty_text: When you open a support ticket it will show up here.
+    error_load: Failed to load the ticket.
+    error_not_found: Ticket not found or access denied.
+    error_reply: Failed to send the reply.
+    error_status: Failed to update the status.
+    error_assign: Failed to assign the ticket.
+    error_create: Failed to create the ticket.
+  email:
+    new_ticket_subject: "New support ticket: {subject}"
+    reply_subject: "New reply on: {subject}"
+    new_ticket:
+      body: |
+        {opener_display_name} opened a new support ticket "{title}".
+
+        {content}
+
+        {url}
+    ticket_reply:
+      body: |
+        {author_display_name} replied to the support ticket "{title}".
+
+        {content}
+
+        {url}
+  notification:
+    new_ticket: "New support ticket created"
+    ticket_reply: "New reply on your ticket"

@@ -1,0 +1,110 @@
+cengizkemec-support:
+  admin:
+    title: Destek Biletleri
+    settings: Ayarlar
+    auto_close_days: Otomatik kapatma (gün)
+    auto_close_days_help: "Bu süre boyunca hareket görmeyen biletler otomatik olarak kapatılır. İzin verilen değerler: 1-365."
+    email_notifications: E-posta bildirimleri
+    email_notifications_help: Bir bilet oluşturulduğunda veya yanıt yazıldığında ilgililere e-posta gönderilir.
+    permissions:
+      view_all: Tüm destek biletlerini gör
+      reply: Destek biletlerine yanıt ver
+      manage: Destek biletlerini yönet
+    categories:
+      title: Bilet kategorileri
+      help: Kategoriler, kullanıcıların bilet açarken doğru departmanı seçmesine yardımcı olur.
+      add: Kategori ekle
+      cancel: Vazgeç
+      create: Kategori oluştur
+      delete: Sil
+      position: Sıra
+      empty: Henüz kategori yok. Başlamak için bir tane oluşturun.
+      load_error: Kategoriler yüklenemedi. Lütfen tekrar deneyin.
+      created: Kategori oluşturuldu.
+      deleted: Kategori silindi.
+      save_error: Kategori kaydedilemedi.
+      delete_error: Kategori silinemedi.
+      confirm_delete: "{name} kategorisini silmek istediğinizden emin misiniz?"
+      field_name: Ad
+      field_slug: Kısa ad (slug)
+      field_slug_help: Küçük harf, rakam ve tire içeren URL dostu tanımlayıcı.
+      field_description: Açıklama
+      field_active: Etkin
+      field_active_help: Etkin olmayan kategoriler kullanıcılar bilet açarken gizlenir.
+  forum:
+    nav_item: Destek
+    title: Destek Merkezi
+    subtitle: Bir bilet oluşturun, ekibimiz en kısa sürede size dönüş yapacaktır.
+    new_ticket: Yeni Bilet
+    my_tickets: Biletlerim
+    status:
+      new: Yeni
+      answered: Yanıtlandı
+      pending: Beklemede
+      resolved: Çözüldü
+      closed: Kapatıldı
+    priority:
+      low: Düşük
+      medium: Orta
+      high: Yüksek
+      critical: Kritik
+    priority_label: Öncelik
+    tab_all: Tümü
+    tab_open: Açık
+    tab_closed: Kapalı
+    stat_total: Toplam
+    stat_open: Açık
+    stat_closed: Kapalı
+    category: Kategori
+    category_none: Kategori seçin
+    subject: Konu
+    subject_placeholder: Sorununuzu kısaca özetleyin
+    message: Mesaj
+    message_placeholder: Sorununuzu ayrıntılı olarak açıklayın...
+    attachment: Ek
+    upload: Yükle
+    uploading: Yükleniyor...
+    upload_done: Yüklendi
+    upload_failed: Yükleme başarısız oldu. Lütfen tekrar deneyin.
+    create: Bilet Oluştur
+    reply: Yanıtla
+    reply_placeholder: Bir yanıt yazın...
+    send_reply: Yanıt Gönder
+    assigned_to: Atanan
+    unassigned: Atanmamış
+    staff: Ekip
+    staff_panel: Ekip İşlemleri
+    status_label: Durum
+    reopen: Yeniden Aç
+    mark_resolved: Çözüldü Olarak İşaretle
+    close_ticket: Kapat
+    closed_note: Bu bilet kapatıldı. Sohbete devam etmek için yeniden açın.
+    unknown_user: Bilinmeyen kullanıcı
+    empty_title: Henüz bilet yok
+    empty_text: Bir destek bileti oluşturduğunuzda burada görünecektir.
+    error_load: Bilet yüklenemedi.
+    error_not_found: Bilet bulunamadı veya erişim reddedildi.
+    error_reply: Yanıt gönderilemedi.
+    error_status: Durum güncellenemedi.
+    error_assign: Bilet atanamadı.
+    error_create: Bilet oluşturulamadı.
+  email:
+    new_ticket_subject: "Yeni destek bileti: {subject}"
+    reply_subject: "Yeni yanıt: {subject}"
+    new_ticket:
+      body: |
+        {opener_display_name} yeni bir destek bileti açtı: "{title}".
+
+        {content}
+
+        {url}
+    ticket_reply:
+      body: |
+        {author_display_name}, "{title}" destek biletine yanıt verdi.
+
+        {content}
+
+        {url}
+  notification:
+    new_ticket: "Yeni destek bileti oluşturuldu"
+    ticket_reply: "Biletinize yeni yanıt geldi"
